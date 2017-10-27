@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+
+'use strict';
+
+let {compile} = require('..');
+let path = require('path');
+let yargs = require('yargs');
+
+yargs.usage(`Usage: docway 
+    --config [config js file] 
+    `).help('h').alias('h', 'help');
+
+let {
+    argv
+} = yargs;
+
+// config file
+let configFile = path.resolve(process.cwd(), argv.config);
+let config = require(configFile);
+
+Promise.resolve(compile(config)).then((result = '') => {
+    console.log(result); // eslint-disable-line
+}).catch(err => {
+    console.log(err.stack); // eslint-disable-line
+});

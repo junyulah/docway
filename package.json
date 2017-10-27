@@ -1,0 +1,33 @@
+{
+  "name": "docway",
+  "version": "0.0.1",
+  "description": "Generate documents for a project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/**/*.js"
+  },
+  "bin": {
+    "docway": "./bin/docway"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LoveKino/docway.git"
+  },
+  "keywords": [
+    "document",
+    "generator"
+  ],
+  "author": "ddchen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LoveKino/docway/issues"
+  },
+  "homepage": "https://github.com/LoveKino/docway#readme",
+  "devDependencies": {
+    "mocha": "^4.0.1"
+  },
+  "dependencies": {
+    "es6-promisify": "^5.0.0",
+    "yargs": "^10.0.3"
+  }
+}
