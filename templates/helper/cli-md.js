@@ -6,7 +6,7 @@ module.exports = ({
     stderr
 }) => {
     return `\`\`\`
-[root@localhost ~]# ${cmd} 
+$ ${cmd} 
 ${stdout || stderr}
 \`\`\``;
 };
