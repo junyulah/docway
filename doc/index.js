@@ -3,13 +3,19 @@
 let packageCollector = require('../collectors/node/package');
 let cmdCollector = require('../collectors/cmd');
 let path = require('path');
-let cliSampleCollector = require('../collectors/node/cliSample');
+let sampleCollector = require('../collectors/sample');
 
 module.exports = {
     template: require('./docTemplate.js'),
 
+    target: path.join(__dirname, '../README.md'),
+
     content: {
-        licensePath: './LICENSE'
+        licensePath: './LICENSE',
+        moreCLISamples: [{
+            name: 'common samples',
+            link: './doc/cliSamples/common.md'
+        }]
     },
 
     collectors: [{
@@ -24,9 +30,19 @@ module.exports = {
         }]
     }, {
         name: 'cliSamples',
-        collector: cliSampleCollector,
-        args: [path.join(__dirname, '../test/sample/basic.js')]
+        collector: sampleCollector,
+        args: [require('../test/sample/basic.js')]
     }],
 
-    processors: []
+    processors: [],
+
+    subDocuments: [{
+        target: path.join(__dirname, './cliSamples/common.md'),
+        template: require('./cliSampleTemplate'),
+        collectors: [{
+            name: 'samples',
+            collector: sampleCollector,
+            args: [require('../test/sample/basic.js')]
+        }]
+    }]
 };

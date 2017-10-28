@@ -8,11 +8,12 @@
  */
 
 let {
-    exec
-} = require('./util');
-let {
-    dirname
-} = require('path');
+    runSample
+} = require('./sample');
+let promisify = require('es6-promisify');
+let fs = require('fs');
+
+let writeFile = promisify(fs.writeFile);
 
 /**
  *
@@ -31,79 +32,40 @@ let {
  *
  * target: filePath or function
  */
-module.exports = {
-    compile: (config) => {
-        let collectors = config.collectors || [];
 
-        // TODO check collectors, warning repeated name
-        return Promise.all(collectors.map(({
-            name,
-            collector,
-            args
-        }) => {
-            let params = args || [];
-            return Promise.resolve(collector(...params)).then((data) => {
-                config.content[name] = data;
-            });
-        })).then(() => {
-            return config.template(config.content);
-        });
-    },
+let compile = (config) => {
+    let collectors = config.collectors || [];
+    let subDocuments = config.subDocuments || [];
 
-    cliSample: (name, items, options = {}) => {
-        return {
-            name,
-            items,
-            options
-        };
-    },
-
-    cliIt: (name, cmdCode, options = {}) => {
-        return {
-            cmdCode,
-            name,
-            options
-        };
-    },
-
-    runCLISample: (sample, {
-        filePath
+    // TODO check collectors, warning repeated name
+    return Promise.all(collectors.map(({
+        name,
+        collector,
+        args
     }) => {
-        return Promise.all(sample.items.map((item) => {
-            let mergedOptions = Object.assign({
-                cwd: dirname(filePath)
-            }, sample.options, item.options);
-
-            let path = (mergedOptions.env && mergedOptions.env.PATH) || process.env.PATH;
-
-            if (mergedOptions.binDir) {
-                path += `:${mergedOptions.binDir}`;
-            }
-
-            mergedOptions.env = Object.assign({}, mergedOptions.env || process.env, {
-                PATH: path
-            });
-
-            return exec(item.cmdCode, mergedOptions).then(({
-                cmd,
-                stdout,
-                stderr
-            }) => {
-                return {
-                    name: item.name,
-                    cmd,
-                    stdout,
-                    stderr,
-                    options: item.options,
-                    runOptions: mergedOptions
-                };
-            });
-        })).then((items) => {
-            return {
-                name: sample.name,
-                items,
-                options: sample.options
-            };
+        let params = args || [];
+        return Promise.resolve(collector(...params)).then((data) => {
+            config.content[name] = data;
         });
-    }
+    })).then(() => {
+        return Promise.all(subDocuments.map((subdocConfig) => {
+            subdocConfig.content = subdocConfig.content || {};
+            subdocConfig.content.parent = subdocConfig.content.parent || config.content;
+            return compile(subdocConfig);
+        }));
+    }).then(() => {
+        let str = config.template(config.content);
+
+        if (!config.target) {
+            return str;
+        }
+
+        return writeFile(config.target, str, 'utf-8');
+    });
+};
+
+module.exports = {
+    compile,
+
+    runSample
 };
