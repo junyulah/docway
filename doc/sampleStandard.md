@@ -18,4 +18,4 @@ The problem is a lot of projects provide awkward samples which can not be ran or
 
 - How to run sample.
 
-- * Sample to test.
+- Check sample result.
