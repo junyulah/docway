@@ -8,7 +8,7 @@ module.exports = {
     target: path.join(__dirname, './README.md'),
 
     content: {
-        topic: 'Quick start test projects.',
+        topic: 'Quick start test project.',
         features: [
             'This is feature 1',
             'This is feature 2'
