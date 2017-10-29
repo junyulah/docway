@@ -1,11 +1,13 @@
 'use strict';
 
-let packageCollector = require('../collectors/node/package');
-let path = require('path');
-let sampleCollector = require('../collectors/sample');
+const packageCollector = require('../collectors/node/package');
+const path = require('path');
+const sampleCollector = require('../collectors/sample');
+const simpleDocTemplate = require('../templates/simple/docTemplate.js');
+const simpleSampleDocTemplate = require('../templates/simple/sampleTemplate');
 
 module.exports = {
-    template: require('./docTemplate.js'),
+    template: simpleDocTemplate,
 
     target: path.join(__dirname, '../README.md'),
 
@@ -47,7 +49,7 @@ module.exports = {
 
     subDocuments: [{
         target: path.join(__dirname, './cliSamples/common.md'),
-        template: require('./sampleTemplate'),
+        template: simpleSampleDocTemplate,
         collectors: [{
             name: 'samples',
             collector: sampleCollector,
@@ -55,7 +57,7 @@ module.exports = {
         }]
     }, {
         target: path.join(__dirname, './apiSamples/common.md'),
-        template: require('./sampleTemplate'),
+        template: require('../templates/simple/sampleTemplate'),
         collectors: [{
             name: 'samples',
             collector: sampleCollector,

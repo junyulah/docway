@@ -1,6 +1,12 @@
 'use strict';
 
 let child_process = require('child_process');
+let promisify = require('es6-promisify');
+let fs = require('fs');
+let path = require('path');
+let mkdirp = promisify(require('mkdirp'));
+
+let writeFileP = promisify(fs.writeFile);
 
 /**
  * collect information ny run a command
@@ -26,6 +32,13 @@ const exec = (cmd, options = {}) => {
     });
 };
 
+const writeFile = (file, content, options) => {
+    return mkdirp(path.dirname(file)).then(() => {
+        return writeFileP(file, content, options);
+    });
+};
+
 module.exports = {
-    exec
+    exec,
+    writeFile
 };

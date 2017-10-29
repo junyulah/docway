@@ -1,10 +1,10 @@
 'use strict';
 
-const titleTpl = require('../templates/helper/node/title-md');
-const installTpl = require('../templates/helper/node/install-md');
-const licenseTpl = require('../templates/helper/license-refer-md');
-const sampleTpl = require('../templates/helper/sample-md');
-const docToolTpl = require('../templates/helper/doc-tool-md');
+const titleTpl = require('../helper/node/title-md');
+const installTpl = require('../helper/node/install-md');
+const licenseTpl = require('../helper/license-refer-md');
+const sampleTpl = require('../helper/sample-md');
+const docToolTpl = require('../helper/doc-tool-md');
 const toc = require('markdown-toc');
 
 let renderBody = ({

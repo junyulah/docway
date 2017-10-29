@@ -10,10 +10,7 @@
 let {
     runSample
 } = require('./sample');
-let promisify = require('es6-promisify');
-let fs = require('fs');
-
-let writeFile = promisify(fs.writeFile);
+let {writeFile} = require('./util');
 
 /**
  *

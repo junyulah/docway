@@ -1,6 +1,6 @@
 'use strict';
 
-const sampleTpl = require('../templates/helper/sample-md');
+const sampleTpl = require('../helper/sample-md');
 
 module.exports = ({
     samples
