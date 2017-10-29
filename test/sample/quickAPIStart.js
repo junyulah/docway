@@ -3,7 +3,7 @@
 const path = require('path');
 
 module.exports = {
-    name: 'Quick API example',
+    name: 'Quick API Example',
     samples: [{
         name: 'quick start',
         directory: path.join(__dirname, './api/quickStart'),

@@ -9,6 +9,7 @@ let {
  *    name,
  *    directory,
  *    link,
+ *    downloadLink, 
  *    prepareCmd,
  *    runCmd,
  *

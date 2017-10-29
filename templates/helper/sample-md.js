@@ -9,7 +9,7 @@ module.exports = ({
     return `## ${name}
 
 ${samples.map(({files, sample, stdout, stderr}) => {
-        return `- [${sample.name}](${sample.link})
+        return `- ${sample.name} ${sample.link?`[[see]](${sample.link})` : ''} ${sample.downloadLink?`[[download]](${sample.downloadLink})` : ''}
 
 ${renderFiles(files)}
 

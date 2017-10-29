@@ -6,6 +6,9 @@ const licenseTpl = require('../templates/helper/license-refer-md');
 const sampleTpl = require('../templates/helper/sample-md');
 
 module.exports = ({
+    topic,
+    features,
+
     module,
     licensePath,
 
@@ -16,6 +19,11 @@ module.exports = ({
     moreCLISamples
 }) => {
     return `${titleTpl(module.name)}
+${topic}
+
+${features? `## Features
+${features.map((feature) => `- ${feature}`).join('\n')}
+`: ''}
 
 ${installTpl(module.name)}
 

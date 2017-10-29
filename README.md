@@ -1,6 +1,13 @@
 # docway
+Generate documents for a project.
 
-## Install
+## Features
+- Plugin based. Which means we hope you just need to require suitable plugins.
+- Tools and libraries exposed. Which means you can customize your own templates or collectors easily.
+- Sample standard. We try to make a simple sample standard which we can make sample easily to read, run and download ...
+
+
+## Installation
 
 ```
 npm i docway --save
@@ -11,9 +18,9 @@ Install on global
 npm i docway -g
 ```
 
-## Quick CLI example
+## Quick CLI Example
 
-- [options](./test/sample/cli/options)
+- options [[see]](./test/sample/cli/options) 
 
 
 
@@ -30,7 +37,7 @@ Options:
 
 ```
 
-- [quick start](./test/sample/cli/quickStart)
+- quick start [[see]](./test/sample/cli/quickStart) [[download]](./test/sample/cli/quickStart.tar.gz)
 
 [doc.js](test/sample/cli/quickStart/doc.js)
 ```js
@@ -52,9 +59,9 @@ $ ./node_modules/.bin/docway --config ./doc.js
 
 see more CLI samples: [common CLI samples](./doc/cliSamples/common.md)
 
-## Quick API example
+## Quick API Example
 
-- [quick start](./test/sample/api/quickStart)
+- quick start [[see]](./test/sample/api/quickStart) 
 
 [quickStart.js](test/sample/api/quickStart/quickStart.js)
 ```js

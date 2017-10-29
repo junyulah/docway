@@ -1,4 +1,4 @@
-module.exports = (moduleName) => `## Install
+module.exports = (moduleName) => `## Installation
 
 \`\`\`
 npm i ${moduleName} --save
