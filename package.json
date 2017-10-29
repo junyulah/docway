@@ -4,7 +4,7 @@
   "description": "Generate documents for a project.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/**/*.js"
+    "test": "mocha test/**/*.js -t 1000000"
   },
   "bin": {
     "docway": "./bin/docway"

@@ -28,8 +28,27 @@ let {
  * }
  */
 
+let runSample = (sample) => {
+    let {
+        prepareCmd,
+        runCmd,
+        checkResult = noop,
+        directory
+    } = sample;
+
+    return (prepareCmd ? exec(prepareCmd, {
+        cwd: directory
+    }) : Promise.resolve()).then(() => {
+        return exec(runCmd, {
+            cwd: directory
+        });
+    }).then((ret) => {
+        return Promise.resolve(checkResult(ret, sample)).then(() => ret);
+    });
+};
+
 module.exports = {
-    runSample: ({
+    runSamples: ({
         name,
         samples,
         options
@@ -54,19 +73,9 @@ module.exports = {
                 options
             };
         });
-    }
+    },
+
+    runSample
 };
 
-let runSample = ({
-    prepareCmd,
-    runCmd,
-    directory
-}) => {
-    return (prepareCmd ? exec(prepareCmd, {
-        cwd: directory
-    }) : Promise.resolve()).then(() => {
-        return exec(runCmd, {
-            cwd: directory
-        });
-    });
-};
+const noop = () => {};

@@ -1,7 +1,7 @@
 'use strict';
 
 const {
-    runSample
+    runSamples
 } = require('..');
 const path = require('path');
 const promisify = require('es6-promisify');
@@ -13,7 +13,7 @@ const readFile = promisify(fs.readFile);
  */
 
 module.exports = (samples) => {
-    return runSample(samples).then((sampleInfos) => {
+    return runSamples(samples).then((sampleInfos) => {
         return Promise.all(sampleInfos.samples.map((item) => {
             return Promise.all([
                 collectBeforeRun(item),

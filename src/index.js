@@ -8,7 +8,8 @@
  */
 
 let {
-    runSample
+    runSample,
+    runSamples
 } = require('./sample');
 let {writeFile} = require('./util');
 
@@ -64,5 +65,7 @@ let compile = (config) => {
 module.exports = {
     compile,
 
-    runSample
+    runSample,
+
+    runSamples
 };
