@@ -6,4 +6,8 @@
 
 - development document
 
-- log progress
+- log progress (show logs, especially the exec logs)
+
+- prepares
+
+- posts

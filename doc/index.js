@@ -38,14 +38,12 @@ module.exports = {
     }, {
         name: 'cliSamples',
         collector: sampleCollector,
-        args: [require('../test/sample/quickCLIStart.js')]
+        args: [require('../sample/quickCLIStart.js')]
     }, {
         name: 'apiSamples',
         collector: sampleCollector,
-        args: [require('../test/sample/quickAPIStart.js')]
+        args: [require('../sample/quickAPIStart.js')]
     }],
-
-    processors: [],
 
     subDocuments: [{
         target: path.join(__dirname, './cliSamples/common.md'),
@@ -53,7 +51,7 @@ module.exports = {
         collectors: [{
             name: 'samples',
             collector: sampleCollector,
-            args: [require('../test/sample/quickCLIStart.js')]
+            args: [require('../sample/quickCLIStart.js')]
         }]
     }, {
         target: path.join(__dirname, './apiSamples/common.md'),
@@ -61,7 +59,7 @@ module.exports = {
         collectors: [{
             name: 'samples',
             collector: sampleCollector,
-            args: [require('../test/sample/quickAPIStart.js')]
+            args: [require('../sample/quickAPIStart.js')]
         }]
     }]
 };

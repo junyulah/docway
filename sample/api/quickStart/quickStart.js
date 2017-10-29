@@ -5,9 +5,11 @@ const {
 compile({
     template: ({
         title
-    }) => `${title}`,
+    }) => `## ${title}`,
 
     content: {
         title: 'test'
     }
+}).then((doc) => {
+    console.log(doc);
 });

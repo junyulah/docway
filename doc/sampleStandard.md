@@ -1,5 +1,7 @@
 ## Sample standard
 
+> Copy And Run
+
 For most of projects, samples are needed. By providing samples, users can easily run examples which depend on your projects.
 
 The problem is a lot of projects provide awkward samples which can not be ran or can not be understand easily. I think if we bring up a simple sample standard, we can help with each other to avoid this situation.
@@ -15,3 +17,5 @@ The problem is a lot of projects provide awkward samples which can not be ran or
 - Where is the sample entrance.
 
 - How to run sample.
+
+- * Sample to test.

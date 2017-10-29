@@ -1,8 +1,9 @@
 ## Quick API Example
 
-- [quick start](./test/sample/api/quickStart) 
+### [quick start](./sample/api/quickStart) 
 
-[quickStart.js](test/sample/api/quickStart/quickStart.js)
+- [quickStart.js](sample/api/quickStart/quickStart.js)
+
 ```js
 const {
     compile
@@ -11,16 +12,23 @@ const {
 compile({
     template: ({
         title
-    }) => `${title}`,
+    }) => `## ${title}`,
 
     content: {
         title: 'test'
     }
+}).then((doc) => {
+    console.log(doc);
 });
 
 ```
 
-```
-$ node quickStart.js 
+- run sample
 
 ```
+$ node quickStart.js 
+## test
+
+```
+
+

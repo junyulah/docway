@@ -15,7 +15,7 @@ let writeFileP = promisify(fs.writeFile);
 const exec = (cmd, options = {}) => {
     return new Promise((resolve, reject) => {
         try {
-            child_process.exec(cmd, options, (error, stdout, stderr) => {
+            let child = child_process.exec(cmd, options, (error, stdout, stderr) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -26,6 +26,9 @@ const exec = (cmd, options = {}) => {
                     });
                 }
             });
+
+            child.stdout.pipe(process.stdout);
+            child.stderr.pipe(process.stderr);
         } catch (err) {
             reject(err);
         }

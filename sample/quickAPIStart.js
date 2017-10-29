@@ -7,14 +7,16 @@ module.exports = {
     samples: [{
         name: 'quick start',
         directory: path.join(__dirname, './api/quickStart'),
-        link: './test/sample/api/quickStart',
-        prepareCmd: 'npm i',
+        link: './sample/api/quickStart',
+        prepareCmd: 'npm i && npm update',
         runCmd: 'node quickStart.js',
 
         display: {
-            files: [{
-                target: path.join(__dirname, './api/quickStart/quickStart.js')
-            }]
+            beforeRun: {
+                files: [{
+                    target: path.join(__dirname, './api/quickStart/quickStart.js')
+                }]
+            }
         }
     }]
 };

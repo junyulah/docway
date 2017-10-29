@@ -7,7 +7,10 @@
 - [Features](#features)
 - [Installation](#installation)
 - [Quick CLI Example](#quick-cli-example)
+  * [check cli options](#check-cli-options)
+  * [quick start](#quick-start)
 - [Quick API Example](#quick-api-example)
+  * [quick start](#quick-start-1)
 - [License](#license)
 
 ## Features
@@ -29,9 +32,11 @@ npm i docway -g
 
 ## Quick CLI Example
 
-- [check cli options](./test/sample/cli/options) 
+### [check cli options](./sample/cli/options) 
 
 
+
+- run sample
 
 ```
 $ ./node_modules/.bin/docway -h 
@@ -46,33 +51,63 @@ Options:
 
 ```
 
-- [quick start](./test/sample/cli/quickStart) [[download]](./test/sample/cli/quickStart.tar.gz)
 
-[doc.js](test/sample/cli/quickStart/doc.js)
+
+### [quick start](./sample/cli/quickStart) [[download]](./sample/cli/quickStart.tar.gz)
+
+- [doc.js](sample/cli/quickStart/doc.js)
+
 ```js
+const packageCollector = require('docway/collectors/node/package');
+const simpleDocTemplate = require('docway/templates/simple/docTemplate.js');
+const path = require('path');
+
 module.exports = {
-    template: ({title}) => `## ${title}`,
+    template: simpleDocTemplate,
+
+    target: path.join(__dirname, './README.md'),
+
     content: {
-        title: 'test'
-    }
+        topic: 'Quick start test projects.',
+        features: [
+            'This is feature 1',
+            'This is feature 2'
+        ],
+
+        licensePath: './LICENSE'
+    },
+
+    collectors: [{
+        name: 'module',
+        collector: packageCollector,
+        args: [path.join(__dirname, './package.json')]
+    }],
+
+    subDocuments: []
 };
 
 ```
 
-```
-$ ./node_modules/.bin/docway --config ./doc.js 
-## test
+- run sample
 
 ```
+$ ./node_modules/.bin/docway --config ./doc.js 
+
+
+```
+
+- view the effect: [README.md](sample/cli/quickStart/README.md)
+
 
 
 see more CLI samples: [common CLI samples](./doc/cliSamples/common.md)
 
 ## Quick API Example
 
-- [quick start](./test/sample/api/quickStart) 
+### [quick start](./sample/api/quickStart) 
 
-[quickStart.js](test/sample/api/quickStart/quickStart.js)
+- [quickStart.js](sample/api/quickStart/quickStart.js)
+
 ```js
 const {
     compile
@@ -81,19 +116,26 @@ const {
 compile({
     template: ({
         title
-    }) => `${title}`,
+    }) => `## ${title}`,
 
     content: {
         title: 'test'
     }
+}).then((doc) => {
+    console.log(doc);
 });
 
 ```
 
-```
-$ node quickStart.js 
+- run sample
 
 ```
+$ node quickStart.js 
+## test
+
+```
+
+
 
 
 see more API samples: [common API samples](./doc/apiSamples/common.md)
