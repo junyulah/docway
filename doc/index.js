@@ -16,6 +16,7 @@ module.exports = {
             'Tools and libraries exposed. Which means you can customize your own templates or collectors easily.',
             'Sample standard. We try to make a simple sample standard which we can make sample easily to read, run and download ...'
         ],
+
         licensePath: './LICENSE',
         moreCLISamples: [{
             name: 'common CLI samples',

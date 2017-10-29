@@ -1,5 +1,14 @@
+
 # docway
-Generate documents for a project.
+> Generate documents for a project.
+
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Quick CLI Example](#quick-cli-example)
+- [Quick API Example](#quick-api-example)
+- [License](#license)
 
 ## Features
 - Plugin based. Which means we hope you just need to require suitable plugins.

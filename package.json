@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "es6-promisify": "^5.0.0",
+    "markdown-toc": "^1.2.0",
     "yargs": "^10.0.3"
   }
 }

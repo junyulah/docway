@@ -4,9 +4,9 @@ const titleTpl = require('../templates/helper/node/title-md');
 const installTpl = require('../templates/helper/node/install-md');
 const licenseTpl = require('../templates/helper/license-refer-md');
 const sampleTpl = require('../templates/helper/sample-md');
+const toc = require('markdown-toc');
 
-module.exports = ({
-    topic,
+let renderBody = ({
     features,
 
     module,
@@ -18,10 +18,7 @@ module.exports = ({
     cliSamples,
     moreCLISamples
 }) => {
-    return `${titleTpl(module.name)}
-${topic}
-
-${features? `## Features
+    return `${features? `## Features
 ${features.map((feature) => `- ${feature}`).join('\n')}
 `: ''}
 
@@ -37,4 +34,17 @@ ${moreApiSamples? `see more API samples: ${moreApiSamples.map(({name, link}) => 
 
 ${licenseTpl(module.name, module.license, licensePath)}
 `;
+};
+
+module.exports = (content) => {
+    let body = renderBody(content);
+    return `
+${titleTpl(content.module.name)}
+${content.topic? `> ${content.topic}`: ''}
+
+## Table of Contents
+
+${toc(body).content}
+
+${body}`;
 };
