@@ -4,6 +4,7 @@ const titleTpl = require('../templates/helper/node/title-md');
 const installTpl = require('../templates/helper/node/install-md');
 const licenseTpl = require('../templates/helper/license-refer-md');
 const sampleTpl = require('../templates/helper/sample-md');
+const docToolTpl = require('../templates/helper/doc-tool-md');
 const toc = require('markdown-toc');
 
 let renderBody = ({
@@ -33,6 +34,8 @@ ${apiSamples? sampleTpl(apiSamples) : ''}
 ${moreApiSamples? `see more API samples: ${moreApiSamples.map(({name, link}) => `[${name}](${link})`).join(' ')}`: ''}
 
 ${licenseTpl(module.name, module.license, licensePath)}
+
+${docToolTpl()}
 `;
 };
 

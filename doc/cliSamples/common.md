@@ -1,6 +1,6 @@
 ## Quick CLI Example
 
-- options [[see]](./test/sample/cli/options) 
+- [check cli options](./test/sample/cli/options) 
 
 
 
@@ -17,7 +17,7 @@ Options:
 
 ```
 
-- quick start [[see]](./test/sample/cli/quickStart) [[download]](./test/sample/cli/quickStart.tar.gz)
+- [quick start](./test/sample/cli/quickStart) [[download]](./test/sample/cli/quickStart.tar.gz)
 
 [doc.js](test/sample/cli/quickStart/doc.js)
 ```js

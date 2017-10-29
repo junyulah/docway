@@ -14,7 +14,7 @@ module.exports = {
         features: [
             'Plugin based. Which means we hope you just need to require suitable plugins.',
             'Tools and libraries exposed. Which means you can customize your own templates or collectors easily.',
-            'Sample standard. We try to make a simple sample standard which we can make sample easily to read, run and download ...'
+            '[Sample standard](./doc/sampleStandard.md). We try to make a simple sample standard which we can make sample easily to read, run and download ...'
         ],
 
         licensePath: './LICENSE',

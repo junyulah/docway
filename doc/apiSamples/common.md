@@ -1,6 +1,6 @@
 ## Quick API Example
 
-- quick start [[see]](./test/sample/api/quickStart) 
+- [quick start](./test/sample/api/quickStart) 
 
 [quickStart.js](test/sample/api/quickStart/quickStart.js)
 ```js
