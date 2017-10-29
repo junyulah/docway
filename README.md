@@ -32,7 +32,7 @@ npm i docway -g
 
 ## Quick CLI Example
 
-### [check cli options](./sample/cli/options) 
+### [check cli options](https://github.com/LoveKino/docway/tree/master/sample/cli/options) 
 
 
 
@@ -53,9 +53,9 @@ Options:
 
 
 
-### [quick start](./sample/cli/quickStart) [[download]](./sample/cli/quickStart.tar.gz)
+### [quick start](https://github.com/LoveKino/docway/tree/master/sample/cli/quickStart) [[download]](https://github.com/LoveKino/docway/raw/master/sample/cli/quickstart.tar.gz)
 
-- [doc.js](sample/cli/quickStart/doc.js)
+- [doc.js](https:/github.com/LoveKino/docway/tree/master/sample/cli/quickStart/doc.js)
 
 ```js
 const packageCollector = require('docway/collectors/node/package');
@@ -68,7 +68,7 @@ module.exports = {
     target: path.join(__dirname, './README.md'),
 
     content: {
-        topic: 'Quick start test projects.',
+        topic: 'Quick start test project.',
         features: [
             'This is feature 1',
             'This is feature 2'
@@ -96,7 +96,7 @@ $ ./node_modules/.bin/docway --config ./doc.js
 
 ```
 
-- view the effect: [README.md](sample/cli/quickStart/README.md)
+- view the effect: [README.md](https:/github.com/LoveKino/docway/tree/master/sample/cli/quickStart/README.md)
 
 
 
@@ -104,9 +104,9 @@ see more CLI samples: [common CLI samples](./doc/cliSamples/common.md)
 
 ## Quick API Example
 
-### [quick start](./sample/api/quickStart) 
+### [quick start](https://github.com/LoveKino/docway/tree/master/sample/api/quickStart) 
 
-- [quickStart.js](sample/api/quickStart/quickStart.js)
+- [quickStart.js](https:/github.com/LoveKino/docway/tree/master/sample/api/quickStart/quickStart.js)
 
 ```js
 const {

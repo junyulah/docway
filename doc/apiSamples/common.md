@@ -1,8 +1,13 @@
+
+## Table of Contents
+- [Quick API Example](#quick-api-example)
+  * [quick start](#quick-start)
+
 ## Quick API Example
 
-### [quick start](./sample/api/quickStart) 
+### [quick start](https://github.com/LoveKino/docway/tree/master/sample/api/quickStart) 
 
-- [quickStart.js](sample/api/quickStart/quickStart.js)
+- [quickStart.js](https:/github.com/LoveKino/docway/tree/master/sample/api/quickStart/quickStart.js)
 
 ```js
 const {

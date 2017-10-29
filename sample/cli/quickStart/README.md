@@ -1,6 +1,6 @@
 
 # docway-cli-sample-quickstart
-> Quick start test projects.
+> Quick start test project.
 
 ## Table of Contents
 
