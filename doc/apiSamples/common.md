@@ -5,7 +5,7 @@
 
 ## Quick API Example
 
-### [quick start](../../sample/api/quickStart)  
+### [quick start](../../sample/api/quickStart)  [[animation]](../images/common-api-sample-0.gif)
 
 - [quickStart.js](../../sample/api/quickStart/quickStart.js)
 

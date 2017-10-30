@@ -104,7 +104,7 @@ see more CLI samples: [common CLI samples](./doc/cliSamples/common.md)
 
 ## Quick API Example
 
-### [quick start](sample/api/quickStart)  
+### [quick start](sample/api/quickStart)  [[animation]](doc/images/quick-api-sample-0.gif)
 
 - [quickStart.js](sample/api/quickStart/quickStart.js)
 

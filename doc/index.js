@@ -18,13 +18,11 @@ module.exports = {
             'Tools and libraries exposed. Which means you can customize your own templates or collectors easily.',
             '[Sample standard](./doc/sampleStandard.md). We try to make a simple sample standard which we can make sample easily to read, download, run...'
         ],
-
         licensePath: './LICENSE',
         moreCLISamples: [{
             name: 'common CLI samples',
             link: './doc/cliSamples/common.md'
         }],
-
         moreApiSamples: [{
             name: 'common API samples',
             link: './doc/apiSamples/common.md'
@@ -46,7 +44,11 @@ module.exports = {
     }, {
         name: 'apiSamples',
         collector: sampleCollector,
-        args: [require('../sample/quickAPIStart.js')]
+        args: [require('../sample/quickAPIStart.js'), {
+            capture: true,
+            prefix: 'quick-api',
+            imgDir: path.join(__dirname, './images')
+        }]
     }],
 
     subDocuments: [{
@@ -55,7 +57,11 @@ module.exports = {
         collectors: [{
             name: 'samples',
             collector: sampleCollector,
-            args: [require('../sample/quickCLIStart.js')]
+            args: [require('../sample/quickCLIStart.js'), {
+                capture: true,
+                prefix: 'common-cli',
+                imgDir: path.join(__dirname, './images')
+            }]
         }]
     }, {
         target: path.join(__dirname, './apiSamples/common.md'),
@@ -63,7 +69,11 @@ module.exports = {
         collectors: [{
             name: 'samples',
             collector: sampleCollector,
-            args: [require('../sample/quickAPIStart.js')]
+            args: [require('../sample/quickAPIStart.js'), {
+                capture: true,
+                prefix: 'common-api',
+                imgDir: path.join(__dirname, './images')
+            }]
         }]
     }]
 };

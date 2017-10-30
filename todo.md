@@ -19,3 +19,9 @@
 - logos for download
 
 - relative path for document and sub document
+
+- sample details template
+
+- animation template
+
+- support prepare command and post command as list

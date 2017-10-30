@@ -6,7 +6,7 @@
 
 ## Quick CLI Example
 
-### [check cli options](../../sample/cli/options)  
+### [check cli options](../../sample/cli/options)  [[animation]](../images/common-cli-sample-0.gif)
 
 
 
@@ -27,7 +27,7 @@ Options:
 
 
 
-### [quick start](../../sample/cli/quickStart) [[download]](https://github.com/LoveKino/docway/raw/master/sample/cli/quickstart.tar.gz) 
+### [quick start](../../sample/cli/quickStart) [[download]](https://github.com/LoveKino/docway/raw/master/sample/cli/quickstart.tar.gz) [[animation]](../images/common-cli-sample-1.gif)
 
 - [doc.js](../../sample/cli/quickStart/doc.js)
 
