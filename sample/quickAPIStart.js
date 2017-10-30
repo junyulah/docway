@@ -7,7 +7,6 @@ module.exports = {
     samples: [{
         name: 'quick start',
         directory: path.join(__dirname, './api/quickStart'),
-        link: 'https://github.com/LoveKino/docway/tree/master/sample/api/quickStart',
         prepareCmd: 'npm i && npm update',
         runCmd: 'node quickStart.js',
 

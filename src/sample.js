@@ -12,6 +12,7 @@ let {
  *    downloadLink, 
  *    prepareCmd,
  *    runCmd,
+ *    postCmd,
  *
  *    display: {
  *      files: [{
@@ -28,19 +29,33 @@ let {
  * }
  */
 
-let runSample = (sample) => {
+let runSample = (sample, customExecutor) => {
+    let executor = customExecutor || exec;
     let {
         prepareCmd,
+        postCmd,
         runCmd,
         checkResult = noop,
         directory
     } = sample;
 
-    return (prepareCmd ? exec(prepareCmd, {
+    // TODO more validations
+    if (!runCmd) {
+        throw new Error('missing run command.');
+    }
+
+    return (prepareCmd ? executor(prepareCmd, {
         cwd: directory
     }) : Promise.resolve()).then(() => {
-        return exec(runCmd, {
+        return executor(runCmd, {
             cwd: directory
+        }).then((ret) => {
+            if (!postCmd) return ret;
+            return executor(postCmd, {
+                cwd: directory
+            }).then(() => {
+                return ret;
+            });
         });
     }).then((ret) => {
         return Promise.resolve(checkResult(ret, sample)).then(() => ret);
@@ -49,27 +64,27 @@ let runSample = (sample) => {
 
 module.exports = {
     runSamples: ({
-        name,
         samples,
+        name,
         options
-    }) => {
+    }, customExecutor) => {
         return Promise.all(
             samples.map((sample) => {
-                return runSample(sample).then(({
+                return runSample(sample, customExecutor).then(({
                     stdout,
                     stderr
                 }) => {
                     return {
-                        sample,
                         stdout,
-                        stderr
+                        stderr,
+                        sample
                     };
                 });
             })
         ).then((items) => {
             return {
-                name,
                 samples: items,
+                name,
                 options
             };
         });

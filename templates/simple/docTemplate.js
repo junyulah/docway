@@ -18,18 +18,18 @@ let renderBody = ({
 
     cliSamples,
     moreCLISamples
-}) => {
+}, config) => {
     return `${features? `## Features
 ${features.map((feature) => `- ${feature}`).join('\n')}
 `: ''}
 
 ${installTpl(module.name)}
 
-${cliSamples? sampleTpl(cliSamples) : ''}
+${cliSamples? sampleTpl(cliSamples, config) : ''}
 
 ${moreCLISamples? `see more CLI samples: ${moreCLISamples.map(({name, link}) => `[${name}](${link})`).join(' ')}`: ''}
 
-${apiSamples? sampleTpl(apiSamples) : ''}
+${apiSamples? sampleTpl(apiSamples, config) : ''}
 
 ${moreApiSamples? `see more API samples: ${moreApiSamples.map(({name, link}) => `[${name}](${link})`).join(' ')}`: ''}
 
@@ -39,8 +39,8 @@ ${docToolTpl()}
 `;
 };
 
-module.exports = (content) => {
-    let body = renderBody(content);
+module.exports = (content, config) => {
+    let body = renderBody(content, config);
     return `
 ${titleTpl(content.module.name)}
 ${content.topic? `> ${content.topic}`: ''}

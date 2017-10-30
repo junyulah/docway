@@ -1,19 +1,67 @@
 'use strict';
 
 const {
-    runSamples
+    runSample
 } = require('..');
 const path = require('path');
 const promisify = require('es6-promisify');
-let fs = require('fs');
+const {
+    CommandCapture,
+    imagesToGif
+} = require('anipic');
+const fs = require('fs');
 const readFile = promisify(fs.readFile);
+
+let runSamples = ({
+    samples,
+    name,
+    options
+}, {
+    capture,
+    imgDir,
+    prefix
+} = {}) => {
+    return Promise.all(
+        samples.map((sample, index) => {
+            let commandCapture = new CommandCapture();
+
+            let customExecutor = capture ? (command, options) => {
+                return commandCapture.exec(command, options);
+            } : undefined;
+
+            return runSample(sample, customExecutor).then(({
+                stdout,
+                stderr
+            }) => {
+                let imgPath = null;
+                if (capture) {
+                    imgPath = path.join(imgDir, `${prefix}-sample-${index}.gif`);
+                    imagesToGif(commandCapture.images, imgPath);
+                }
+
+                return {
+                    stdout,
+                    stderr,
+                    sample,
+                    imgPath
+                };
+            });
+        })
+    ).then((items) => {
+        return {
+            samples: items,
+            name,
+            options
+        };
+    });
+};
 
 /**
  * collect information from cli example
  */
 
-module.exports = (samples) => {
-    return runSamples(samples).then((sampleInfos) => {
+module.exports = (samples, options) => {
+    return runSamples(samples, options).then((sampleInfos) => {
         return Promise.all(sampleInfos.samples.map((item) => {
             return Promise.all([
                 collectBeforeRun(item),
@@ -58,19 +106,19 @@ let collectAfterRun = (item) => {
     }
 };
 
-let collectFileInfos = (files, directory, directoryLink) => {
+let collectFileInfos = (files, directory) => {
     return Promise.all(files.map(({
         target,
         link
     }) => {
         let rel = path.relative(directory, target);
-        link = link || path.join(directoryLink, rel);
 
         return readFile(target, 'utf-8').then((content) => {
             return {
                 link,
                 content,
                 relativePath: rel,
+                filePath: target,
                 type: path.extname(target).substring(1)
             };
         });

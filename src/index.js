@@ -52,7 +52,7 @@ let compile = (config) => {
             return compile(subdocConfig);
         }));
     }).then(() => {
-        let str = config.template(config.content);
+        let str = config.template(config.content, config);
 
         if (!config.target) {
             return str;

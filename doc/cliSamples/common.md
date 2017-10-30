@@ -6,7 +6,7 @@
 
 ## Quick CLI Example
 
-### [check cli options](https://github.com/LoveKino/docway/tree/master/sample/cli/options) 
+### [check cli options](../../sample/cli/options)  
 
 
 
@@ -27,9 +27,9 @@ Options:
 
 
 
-### [quick start](https://github.com/LoveKino/docway/tree/master/sample/cli/quickStart) [[download]](https://github.com/LoveKino/docway/raw/master/sample/cli/quickstart.tar.gz)
+### [quick start](../../sample/cli/quickStart) [[download]](https://github.com/LoveKino/docway/raw/master/sample/cli/quickstart.tar.gz) 
 
-- [doc.js](https:/github.com/LoveKino/docway/tree/master/sample/cli/quickStart/doc.js)
+- [doc.js](../../sample/cli/quickStart/doc.js)
 
 ```js
 const packageCollector = require('docway/collectors/node/package');
@@ -70,5 +70,5 @@ $ ./node_modules/.bin/docway --config ./doc.js
 
 ```
 
-- view the effect: [README.md](https:/github.com/LoveKino/docway/tree/master/sample/cli/quickStart/README.md)
+- view the effect: [README.md](../../sample/cli/quickStart/README.md)
 

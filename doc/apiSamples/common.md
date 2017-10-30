@@ -5,9 +5,9 @@
 
 ## Quick API Example
 
-### [quick start](https://github.com/LoveKino/docway/tree/master/sample/api/quickStart) 
+### [quick start](../../sample/api/quickStart)  
 
-- [quickStart.js](https:/github.com/LoveKino/docway/tree/master/sample/api/quickStart/quickStart.js)
+- [quickStart.js](../../sample/api/quickStart/quickStart.js)
 
 ```js
 const {

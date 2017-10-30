@@ -16,7 +16,7 @@ module.exports = {
         features: [
             'Plugin based. Which means we hope you just need to require suitable plugins.',
             'Tools and libraries exposed. Which means you can customize your own templates or collectors easily.',
-            '[Sample standard](./doc/sampleStandard.md). We try to make a simple sample standard which we can make sample easily to read, run and download ...'
+            '[Sample standard](./doc/sampleStandard.md). We try to make a simple sample standard which we can make sample easily to read, download, run...'
         ],
 
         licensePath: './LICENSE',
@@ -38,7 +38,11 @@ module.exports = {
     }, {
         name: 'cliSamples',
         collector: sampleCollector,
-        args: [require('../sample/quickCLIStart.js')]
+        args: [require('../sample/quickCLIStart.js'), {
+            capture: true,
+            prefix: 'quick-cli',
+            imgDir: path.join(__dirname, './images')
+        }]
     }, {
         name: 'apiSamples',
         collector: sampleCollector,

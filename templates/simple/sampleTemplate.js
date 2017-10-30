@@ -5,8 +5,8 @@ const toc = require('markdown-toc');
 
 module.exports = ({
     samples
-}) => {
-    let body = samples? sampleTpl(samples) : '';
+}, config) => {
+    let body = samples? sampleTpl(samples, config) : '';
     return `
 ## Table of Contents
 ${toc(body).content}

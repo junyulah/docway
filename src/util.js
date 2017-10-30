@@ -5,6 +5,7 @@ let promisify = require('es6-promisify');
 let fs = require('fs');
 let path = require('path');
 let mkdirp = promisify(require('mkdirp'));
+let Log = require('./log');
 
 let writeFileP = promisify(fs.writeFile);
 
@@ -30,6 +31,7 @@ const exec = (cmd, options = {}) => {
             child.stdout.pipe(process.stdout);
             child.stderr.pipe(process.stderr);
         } catch (err) {
+            Log.error(`command fail: ${cmd}`);
             reject(err);
         }
     });

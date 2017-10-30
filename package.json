@@ -27,6 +27,7 @@
     "mocha": "^4.0.1"
   },
   "dependencies": {
+    "anipic": "0.0.2",
     "es6-promisify": "^5.0.0",
     "markdown-toc": "^1.2.0",
     "mkdirp": "^0.5.1",

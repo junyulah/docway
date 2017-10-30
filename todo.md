@@ -11,3 +11,11 @@
 - prepares
 
 - posts
+
+- animations to demonstrate tool usage
+
+- download and run tutorial
+
+- logos for download
+
+- relative path for document and sub document

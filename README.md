@@ -16,7 +16,7 @@
 ## Features
 - Plugin based. Which means we hope you just need to require suitable plugins.
 - Tools and libraries exposed. Which means you can customize your own templates or collectors easily.
-- [Sample standard](./doc/sampleStandard.md). We try to make a simple sample standard which we can make sample easily to read, run and download ...
+- [Sample standard](./doc/sampleStandard.md). We try to make a simple sample standard which we can make sample easily to read, download, run...
 
 
 ## Installation
@@ -32,7 +32,7 @@ npm i docway -g
 
 ## Quick CLI Example
 
-### [check cli options](https://github.com/LoveKino/docway/tree/master/sample/cli/options) 
+### [check cli options](sample/cli/options)  [[animation]](doc/images/quick-cli-sample-0.gif)
 
 
 
@@ -53,9 +53,9 @@ Options:
 
 
 
-### [quick start](https://github.com/LoveKino/docway/tree/master/sample/cli/quickStart) [[download]](https://github.com/LoveKino/docway/raw/master/sample/cli/quickstart.tar.gz)
+### [quick start](sample/cli/quickStart) [[download]](https://github.com/LoveKino/docway/raw/master/sample/cli/quickstart.tar.gz) [[animation]](doc/images/quick-cli-sample-1.gif)
 
-- [doc.js](https:/github.com/LoveKino/docway/tree/master/sample/cli/quickStart/doc.js)
+- [doc.js](sample/cli/quickStart/doc.js)
 
 ```js
 const packageCollector = require('docway/collectors/node/package');
@@ -96,7 +96,7 @@ $ ./node_modules/.bin/docway --config ./doc.js
 
 ```
 
-- view the effect: [README.md](https:/github.com/LoveKino/docway/tree/master/sample/cli/quickStart/README.md)
+- view the effect: [README.md](sample/cli/quickStart/README.md)
 
 
 
@@ -104,9 +104,9 @@ see more CLI samples: [common CLI samples](./doc/cliSamples/common.md)
 
 ## Quick API Example
 
-### [quick start](https://github.com/LoveKino/docway/tree/master/sample/api/quickStart) 
+### [quick start](sample/api/quickStart)  
 
-- [quickStart.js](https:/github.com/LoveKino/docway/tree/master/sample/api/quickStart/quickStart.js)
+- [quickStart.js](sample/api/quickStart/quickStart.js)
 
 ```js
 const {
