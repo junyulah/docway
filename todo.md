@@ -25,3 +25,5 @@
 - animation template
 
 - support prepare command and post command as list
+
+- run anipic silently

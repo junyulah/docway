@@ -2,6 +2,8 @@
 
 const cliCmdTpl = require('./cli-md');
 const path = require('path');
+const downloadLogo = require('../logo/download');
+const playLogo = require('../logo/play');
 
 module.exports = ({
     name,
@@ -14,10 +16,7 @@ module.exports = ({
     return `## ${name}
 
 ${samples.map(({beforeRun, afterRun, sample, stdout, stderr, imgPath}) => {
-        let sampleLink = sample.link? sample.link: path.relative(dirTarget, sample.directory);
-        let imgLink = imgPath && path.relative(dirTarget, imgPath);
-
-        return `### [${sample.name}](${sampleLink}) ${sample.downloadLink?`[[download]](${sample.downloadLink})` : ''} ${imgPath?`[[animation]](${imgLink})`: ''}
+        return `### [${sample.name}](${getLink(sample.link, sample.directory, dirTarget)}) ${renderDownload(sample, dirTarget)} ${renderAnimationLink(imgPath, dirTarget)}
 
 ${renderFiles(beforeRun && beforeRun.files, dirTarget)}
 
@@ -31,10 +30,21 @@ ${afterRun? `- view the effect: ${renderFilesToLinks(afterRun.files, dirTarget)}
     }).join('\n')}`;
 };
 
+let renderDownload = (sample) => {
+    return sample.downloadLink? logoLink(downloadLogo, sample.downloadLink, 'download'): '';
+};
+
+let logoLink = (logoLink, realLink, alt='') => {
+    return `<a href="${realLink}"><img src="${logoLink}" style="height:30px" alt=${alt}></a>`;
+};
+
+let renderAnimationLink = (imgPath, dirTarget) => {
+    return imgPath? logoLink(playLogo, getLink(null, imgPath, dirTarget), 'animation'): '';
+};
+
 let renderFiles = (files = [], dirTarget) => {
     return files.map(({relativePath, filePath, content, type, link}) => {
-        let fileLink = link || path.relative(dirTarget, filePath);
-        return `- [${relativePath}](${fileLink})
+        return `- [${relativePath}](${getLink(link, dirTarget, filePath)})
 
 \`\`\`${type}
 ${content}
@@ -44,7 +54,10 @@ ${content}
 
 let renderFilesToLinks = (files = [], dirTarget) => {
     return files.map(({filePath, relativePath, link}) => {
-        let fileLink = link || path.relative(dirTarget, filePath);
-        return `[${relativePath}](${fileLink})`;
+        return `[${relativePath}](${getLink(link, dirTarget, filePath)})`;
     }).join(' ');
+};
+
+let getLink = (link, filePath, dirTarget) => {
+    return link || path.relative(dirTarget, filePath);
 };
