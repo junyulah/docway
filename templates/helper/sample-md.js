@@ -3,8 +3,8 @@
 const cliCmdTpl = require('./cli-md');
 const path = require('path');
 
-const downloadLogo = 'https://raw.githubusercontent.com/LoveKino/docway/master/templates/logo/download.png';
-const playLogo = 'https://raw.githubusercontent.com/LoveKino/docway/master/templates/logo/play.png';
+const downloadLogo = 'https://raw.githubusercontent.com/LoveKino/docway/master/templates/logo/download.svg';
+const playLogo = 'https://raw.githubusercontent.com/LoveKino/docway/master/templates/logo/play.svg';
 
 module.exports = ({
     name,
