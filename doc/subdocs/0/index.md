@@ -54,7 +54,7 @@ module.exports = {
     collectors: [{
         name: 'module',
         collector: packageCollector,
-        args: [path.join(__dirname, './package.json')]
+        data: path.join(__dirname, './package.json')
     }],
 
     subDocuments: []

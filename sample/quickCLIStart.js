@@ -13,8 +13,9 @@ module.exports = {
         name: 'quick start',
         directory: path.join(__dirname, './cli/quickStart'),
         downloadLink: 'https://github.com/LoveKino/docway/raw/master/sample/cli/quickstart.tar.gz',
-        prepareCmd: 'npm i && npm update',
+        prepareCmd: ['ls', 'npm i && npm update', 'cat doc.js'],
         runCmd: './node_modules/.bin/docway --config ./doc.js',
+        postCmd: ['ls', 'cat README.md'],
 
         display: {
             beforeRun: {
