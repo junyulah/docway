@@ -10,14 +10,18 @@ const {
     imagesToGif
 } = require('anipic');
 const fs = require('fs');
+const mkdirp = promisify(require('mkdirp'));
 const readFile = promisify(fs.readFile);
 
 /**
  * collect information from cli example
  */
 
-module.exports = (samples, options) => {
-    return runSamples(samples, options).then((sampleInfos) => {
+module.exports = ({
+    samples,
+    options
+}, collector, config) => {
+    return runSamples(samples, options, collector, config).then((sampleInfos) => {
         return Promise.all(sampleInfos.samples.map((item) => {
             return Promise.all([
                 collectBeforeRun(item),
@@ -36,43 +40,44 @@ let runSamples = ({
     samples,
     name,
     options
-}, {
-    capture,
-    imgDir,
-    prefix
-} = {}) => {
-    return Promise.all(
-        samples.map((sample, index) => {
-            let commandCapture = new CommandCapture();
+}, sampleOptions, collector, config) => {
+    let prefix = sampleOptions.prefix || collector.name;
+    let imgDir = sampleOptions.imgDir || path.join(config.docResDir, 'images');
 
-            let customExecutor = capture ? (command, options) => {
-                return commandCapture.exec(command, options);
-            } : undefined;
+    return mkdirp(imgDir).then(() => {
+        return Promise.all(
+            samples.map((sample, index) => {
+                let commandCapture = new CommandCapture();
 
-            return runSample(sample, customExecutor).then(({
-                stdout,
-                stderr
-            }) => {
-                let imgPath = null;
-                if (capture) {
-                    imgPath = path.join(imgDir, `${prefix}-sample-${index}.gif`);
-                    imagesToGif(commandCapture.images, imgPath);
-                }
+                let customExecutor = sampleOptions.capture ? (command, options) => {
+                    return commandCapture.exec(command, options);
+                } : undefined;
 
-                return {
+                return runSample(sample, customExecutor).then(({
                     stdout,
-                    stderr,
-                    sample,
-                    imgPath
-                };
-            });
-        })
-    ).then((items) => {
-        return {
-            samples: items,
-            name,
-            options
-        };
+                    stderr
+                }) => {
+                    let imgPath = null;
+                    if (sampleOptions.capture) {
+                        imgPath = path.join(imgDir, `${prefix}-sample-${index}.gif`);
+                        imagesToGif(commandCapture.images, imgPath);
+                    }
+
+                    return {
+                        stdout,
+                        stderr,
+                        sample,
+                        showPath: imgPath
+                    };
+                });
+            })
+        ).then((items) => {
+            return {
+                samples: items,
+                name,
+                options
+            };
+        });
     });
 };
 

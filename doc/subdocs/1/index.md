@@ -5,9 +5,9 @@
 
 ## Quick API Example
 
-### [quick start](../../sample/api/quickStart)  <span style="font-size: 14px">[[show]](../images/common-api-sample-0.gif)</span>
+### [quick start](../../../sample/api/quickStart)  [[show]](images/samples-sample-0.gif)
 
-- [quickStart.js](../../../../doc/apiSamples)
+- [quickStart.js](../../../../doc/subdocs/1)
 
 ```js
 const {

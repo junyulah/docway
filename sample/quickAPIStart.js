@@ -7,7 +7,7 @@ module.exports = {
     samples: [{
         name: 'quick start',
         directory: path.join(__dirname, './api/quickStart'),
-        prepareCmd: 'npm i && npm update',
+        prepareCmd: ['ls', 'npm i && npm update', 'cat quickStart.js'],
         runCmd: 'node quickStart.js',
 
         display: {

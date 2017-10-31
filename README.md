@@ -1,6 +1,6 @@
 
 # docway
-> Generate documents for a project.
+
 
 ## Table of Contents
 
@@ -32,7 +32,7 @@ npm i docway -g
 
 ## Quick CLI Example
 
-### [check cli options](sample/cli/options)  <span style="font-size: 14px">[[show]](doc/images/quick-cli-sample-0.gif)</span>
+### [check cli options](sample/cli/options)  [[show]](doc/images/cliSamples-sample-0.gif)
 
 
 
@@ -53,7 +53,7 @@ Options:
 
 
 
-### [quick start](sample/cli/quickStart) <span style="font-size: 14px">[[download]](https://github.com/LoveKino/docway/raw/master/sample/cli/quickstart.tar.gz)</span> <span style="font-size: 14px">[[show]](doc/images/quick-cli-sample-1.gif)</span>
+### [quick start](sample/cli/quickStart) [[download]](https://github.com/LoveKino/docway/raw/master/sample/cli/quickstart.tar.gz) [[show]](doc/images/cliSamples-sample-1.gif)
 
 - [doc.js](../../../..)
 
@@ -100,11 +100,11 @@ $ ./node_modules/.bin/docway --config ./doc.js
 
 
 
-see more CLI samples: [common CLI samples](./doc/cliSamples/common.md)
+See more CLI samples: [common CLI samples](./doc/subdocs/0/index.md)
 
 ## Quick API Example
 
-### [quick start](sample/api/quickStart)  <span style="font-size: 14px">[[show]](doc/images/quick-api-sample-0.gif)</span>
+### [quick start](sample/api/quickStart)  [[show]](doc/images/apiSamples-sample-0.gif)
 
 - [quickStart.js](../../../..)
 
@@ -138,7 +138,7 @@ $ node quickStart.js
 
 
 
-see more API samples: [common API samples](./doc/apiSamples/common.md)
+See more API samples: [common API samples](./doc/subdocs/1/index.md)
 
 ## License
 

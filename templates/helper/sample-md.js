@@ -13,8 +13,8 @@ module.exports = ({
 
     return `## ${name}
 
-${samples.map(({beforeRun, afterRun, sample, stdout, stderr, imgPath}) => {
-        return `### [${sample.name}](${getLink(sample.link, sample.directory, dirTarget)}) ${renderDownload(sample, dirTarget)} ${renderAnimationLink(imgPath, dirTarget)}
+${samples.map(({beforeRun, afterRun, sample, stdout, stderr, showPath}) => {
+        return `### [${sample.name}](${getLink(sample.link, sample.directory, dirTarget)}) ${renderDownload(sample, dirTarget)} ${renderAnimationLink(showPath, dirTarget)}
 
 ${renderFiles(beforeRun && beforeRun.files, dirTarget)}
 
@@ -29,11 +29,11 @@ ${afterRun? `- view the effect: ${renderFilesToLinks(afterRun.files, dirTarget)}
 };
 
 let renderDownload = (sample) => {
-    return sample.downloadLink? `<span style="font-size: 14px">[[download]](${sample.downloadLink})</span>`: '';
+    return sample.downloadLink? `[[download]](${sample.downloadLink})`: '';
 };
 
-let renderAnimationLink = (imgPath, dirTarget) => {
-    return imgPath? `<span style="font-size: 14px">[[show]](${getLink(null, imgPath, dirTarget)})</span>`: '';
+let renderAnimationLink = (showPath, dirTarget) => {
+    return showPath? `[[show]](${getLink(null, showPath, dirTarget)})`: '';
 };
 
 let renderFiles = (files = [], dirTarget) => {

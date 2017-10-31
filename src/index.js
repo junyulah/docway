@@ -7,11 +7,16 @@
  * 2. joint those information with some templates.
  */
 
-let {
+const {
     runSample,
     runSamples
 } = require('./sample');
-let {writeFile} = require('./util');
+const path = require('path');
+const {
+    writeFile
+} = require('./util');
+const promisify = require('es6-promisify');
+const mkdirp = promisify(require('mkdirp'));
 
 /**
  *
@@ -22,7 +27,7 @@ let {writeFile} = require('./util');
  *   collectors: [{
  *      name: '',
  *      collector: () -> {},
- *      args: []
+ *      data
  *   }]
  * }
  *
@@ -32,33 +37,41 @@ let {writeFile} = require('./util');
  */
 
 let compile = (config) => {
+    // process config
+    // TODO check collectors, warning repeated name
     let collectors = config.collectors || [];
     let subDocuments = config.subDocuments || [];
+    config.docResDir = config.docResDir || path.join(process.cwd(), '_docway_docRes');
 
-    // TODO check collectors, warning repeated name
-    return Promise.all(collectors.map(({
-        name,
-        collector,
-        args
-    }) => {
-        let params = args || [];
-        return Promise.resolve(collector(...params)).then((data) => {
-            config.content[name] = data;
+    return mkdirp(config.docResDir).then(() => {
+        return Promise.all(collectors.map((item) => {
+            let params = [item.data, item, config];
+
+            // run collector
+            return Promise.resolve(item.collector(...params)).then((data) => {
+                config.content[item.name] = data;
+            });
+        })).then(() => {
+            // compile sub documents
+            return Promise.all(subDocuments.map((subdocConfig, index) => {
+                // content of subdocConfig
+                subdocConfig.content = subdocConfig.content || {};
+                subdocConfig.content.parent = subdocConfig.content.parent || config.content;
+                subdocConfig.parent = subdocConfig.parent || config;
+
+                subdocConfig.docResDir = subdocConfig.docResDir || path.join(config.docResDir, `subdocs/${index}`);
+                subdocConfig.target = subdocConfig.target || path.join(subdocConfig.docResDir, 'index.md');
+                return compile(subdocConfig);
+            }));
+        }).then(() => {
+            let str = config.template(config.content, config);
+
+            if (!config.target) {
+                return str;
+            }
+
+            return writeFile(config.target, str, 'utf-8');
         });
-    })).then(() => {
-        return Promise.all(subDocuments.map((subdocConfig) => {
-            subdocConfig.content = subdocConfig.content || {};
-            subdocConfig.content.parent = subdocConfig.content.parent || config.content;
-            return compile(subdocConfig);
-        }));
-    }).then(() => {
-        let str = config.template(config.content, config);
-
-        if (!config.target) {
-            return str;
-        }
-
-        return writeFile(config.target, str, 'utf-8');
     });
 };
 

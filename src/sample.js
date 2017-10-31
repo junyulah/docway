@@ -44,16 +44,19 @@ let runSample = (sample, customExecutor) => {
         throw new Error('missing run command.');
     }
 
-    return (prepareCmd ? executor(prepareCmd, {
+    let cmdOptions = {
         cwd: directory
-    }) : Promise.resolve()).then(() => {
-        return executor(runCmd, {
-            cwd: directory
-        }).then((ret) => {
+    };
+
+    let prepareCmds = Array.isArray(prepareCmd) ? prepareCmd :
+        (prepareCmd ? [prepareCmd] : []);
+    let postCmds = Array.isArray(postCmd) ? postCmd :
+        (postCmd ? [postCmd] : []);
+
+    return executeCommands(prepareCmds, cmdOptions, executor).then(() => {
+        return executor(runCmd, cmdOptions).then((ret) => {
             if (!postCmd) return ret;
-            return executor(postCmd, {
-                cwd: directory
-            }).then(() => {
+            return executeCommands(postCmds, cmdOptions, executor).then(() => {
                 return ret;
             });
         });
@@ -61,6 +64,15 @@ let runSample = (sample, customExecutor) => {
         return Promise.resolve(checkResult(ret, sample)).then(() => ret);
     });
 };
+
+let executeCommands = (commands, options, executor) => {
+    if (!commands.length) return Promise.resolve();
+    return executor(commands[0], options).then(() => {
+        return executeCommands(commands.slice(1), options, executor);
+    });
+};
+
+const noop = () => {};
 
 module.exports = {
     runSamples: ({
@@ -92,5 +104,3 @@ module.exports = {
 
     runSample
 };
-
-const noop = () => {};

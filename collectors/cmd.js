@@ -8,7 +8,10 @@ let {
  * collect information ny run a command
  */
 
-module.exports = (cmd, options = {}) => {
+module.exports = ({
+    cmd,
+    options = {}
+}) => {
     let newPath = process.env.PATH + ':' + options.cwd;
     let cmdOptions = Object.assign({
         env: Object.assign({}, process.env, {

@@ -6,7 +6,7 @@
 
 ## Quick CLI Example
 
-### [check cli options](../../sample/cli/options)  <span style="font-size: 14px">[[show]](../images/common-cli-sample-0.gif)</span>
+### [check cli options](../../../sample/cli/options)  [[show]](images/samples-sample-0.gif)
 
 
 
@@ -27,9 +27,9 @@ Options:
 
 
 
-### [quick start](../../sample/cli/quickStart) <span style="font-size: 14px">[[download]](https://github.com/LoveKino/docway/raw/master/sample/cli/quickstart.tar.gz)</span> <span style="font-size: 14px">[[show]](../images/common-cli-sample-1.gif)</span>
+### [quick start](../../../sample/cli/quickStart) [[download]](https://github.com/LoveKino/docway/raw/master/sample/cli/quickstart.tar.gz) [[show]](images/samples-sample-1.gif)
 
-- [doc.js](../../../../doc/cliSamples)
+- [doc.js](../../../../doc/subdocs/0)
 
 ```js
 const packageCollector = require('docway/collectors/node/package');
@@ -70,5 +70,5 @@ $ ./node_modules/.bin/docway --config ./doc.js
 
 ```
 
-- view the effect: [README.md](../../../../doc/cliSamples)
+- view the effect: [README.md](../../../../doc/subdocs/0)
 

@@ -1,6 +1,6 @@
 'use strict';
 
-const titleTpl = require('../helper/node/title-md');
+const titleTpl = require('../helper/title-md');
 const installTpl = require('../helper/node/install-md');
 const licenseTpl = require('../helper/license-refer-md');
 const sampleTpl = require('../helper/sample-md');
@@ -27,11 +27,11 @@ ${installTpl(module.name)}
 
 ${cliSamples? sampleTpl(cliSamples, config) : ''}
 
-${moreCLISamples? `see more CLI samples: ${moreCLISamples.map(({name, link}) => `[${name}](${link})`).join(' ')}`: ''}
+${moreCLISamples? `See more CLI samples: ${moreCLISamples.map(({name, link}) => `[${name}](${link})`).join(' ')}`: ''}
 
 ${apiSamples? sampleTpl(apiSamples, config) : ''}
 
-${moreApiSamples? `see more API samples: ${moreApiSamples.map(({name, link}) => `[${name}](${link})`).join(' ')}`: ''}
+${moreApiSamples? `See more API samples: ${moreApiSamples.map(({name, link}) => `[${name}](${link})`).join(' ')}`: ''}
 
 ${licenseTpl(module.name, module.license, licensePath)}
 
@@ -41,9 +41,10 @@ ${docToolTpl()}
 
 module.exports = (content, config) => {
     let body = renderBody(content, config);
+    let topic = content.topic || (config.module && config.module.description);
     return `
 ${titleTpl(content.module.name)}
-${content.topic? `> ${content.topic}`: ''}
+${topic? `> ${topic}`: ''}
 
 ## Table of Contents
 

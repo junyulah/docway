@@ -9,10 +9,11 @@ const simpleSampleDocTemplate = require('../templates/simple/sampleTemplate');
 module.exports = {
     template: simpleDocTemplate,
 
+    docResDir: __dirname, // we need a doc resource dir which we can used to store images, documents, ...
+
     target: path.join(__dirname, '../README.md'),
 
     content: {
-        topic: 'Generate documents for a project.',
         features: [
             'Plugin based. Which means we hope you just need to require suitable plugins.',
             'Tools and libraries exposed. Which means you can customize your own templates or collectors easily.',
@@ -21,59 +22,63 @@ module.exports = {
         licensePath: './LICENSE',
         moreCLISamples: [{
             name: 'common CLI samples',
-            link: './doc/cliSamples/common.md'
+            link: './doc/subdocs/0/index.md'
         }],
         moreApiSamples: [{
             name: 'common API samples',
-            link: './doc/apiSamples/common.md'
+            link: './doc/subdocs/1/index.md'
         }]
     },
 
     collectors: [{
         name: 'module',
         collector: packageCollector,
-        args: [path.join(__dirname, '../package.json')]
+        data: path.join(__dirname, '../package.json')
     }, {
         name: 'cliSamples',
         collector: sampleCollector,
-        args: [require('../sample/quickCLIStart.js'), {
-            capture: true,
-            prefix: 'quick-cli',
-            imgDir: path.join(__dirname, './images')
-        }]
+        data: {
+            samples: require('../sample/quickCLIStart.js'),
+            options: {
+                capture: true
+            }
+        }
     }, {
         name: 'apiSamples',
         collector: sampleCollector,
-        args: [require('../sample/quickAPIStart.js'), {
-            capture: true,
-            prefix: 'quick-api',
-            imgDir: path.join(__dirname, './images')
-        }]
+        data: {
+            samples: require('../sample/quickAPIStart.js'),
+            options: {
+                capture: true
+            }
+        }
     }],
 
     subDocuments: [{
-        target: path.join(__dirname, './cliSamples/common.md'),
+        name: 'common cli samples',
         template: simpleSampleDocTemplate,
         collectors: [{
             name: 'samples',
             collector: sampleCollector,
-            args: [require('../sample/quickCLIStart.js'), {
-                capture: true,
-                prefix: 'common-cli',
-                imgDir: path.join(__dirname, './images')
-            }]
+            data: {
+                samples: require('../sample/quickCLIStart.js'),
+                options: {
+                    capture: true
+                }
+            }
         }]
     }, {
-        target: path.join(__dirname, './apiSamples/common.md'),
+        name: 'common api samples',
         template: require('../templates/simple/sampleTemplate'),
         collectors: [{
             name: 'samples',
             collector: sampleCollector,
-            args: [require('../sample/quickAPIStart.js'), {
-                capture: true,
-                prefix: 'common-api',
-                imgDir: path.join(__dirname, './images')
-            }]
+            data: {
+                samples: require('../sample/quickAPIStart.js'),
+                options: {
+                    capture: true
+                }
+            }
         }]
     }]
 };

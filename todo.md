@@ -1,4 +1,4 @@
-- samples to tests
+- samples to tests  (done!)
 
 - node badge
 
@@ -8,22 +8,18 @@
 
 - log progress (show logs, especially the exec logs)
 
-- prepares
+- animations to demonstrate tool usage  (done!)
 
-- posts
-
-- animations to demonstrate tool usage
-
-- download and run tutorial
+- download and run tutorial  (done!)
 
 - logos for download
 
-- relative path for document and sub document
+- relative path for document and sub document   (done!)
 
 - sample details template
 
 - animation template
 
-- support prepare command and post command as list
+- support prepare command and post command as list  (done!)
 
 - run anipic silently
