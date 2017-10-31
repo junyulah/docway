@@ -5,7 +5,7 @@
 
 ## Quick API Example
 
-### [quick start](../../sample/api/quickStart)  <a href="../images/common-api-sample-0.gif"><img src="https://raw.githubusercontent.com/LoveKino/docway/master/templates/logo/play.png" style="height:30px" alt=animation></a>
+### [quick start](../../sample/api/quickStart)  <span style="font-size: 14px">[[show]](../images/common-api-sample-0.gif)</span>
 
 - [quickStart.js](../../../../doc/apiSamples)
 

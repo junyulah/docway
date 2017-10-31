@@ -3,9 +3,6 @@
 const cliCmdTpl = require('./cli-md');
 const path = require('path');
 
-const downloadLogo = 'https://raw.githubusercontent.com/LoveKino/docway/master/templates/logo/download.svg';
-const playLogo = 'https://raw.githubusercontent.com/LoveKino/docway/master/templates/logo/play.svg';
-
 module.exports = ({
     name,
     samples
@@ -32,15 +29,11 @@ ${afterRun? `- view the effect: ${renderFilesToLinks(afterRun.files, dirTarget)}
 };
 
 let renderDownload = (sample) => {
-    return sample.downloadLink? logoLink(downloadLogo, sample.downloadLink, 'download'): '';
-};
-
-let logoLink = (logoLink, realLink, alt='') => {
-    return `<a href="${realLink}"><img src="${logoLink}" style="height:30px" alt=${alt}></a>`;
+    return sample.downloadLink? `<span style="font-size: 14px">[[download]](${sample.downloadLink})</span>`: '';
 };
 
 let renderAnimationLink = (imgPath, dirTarget) => {
-    return imgPath? logoLink(playLogo, getLink(null, imgPath, dirTarget), 'animation'): '';
+    return imgPath? `<span style="font-size: 14px">[[show]](${getLink(null, imgPath, dirTarget)})</span>`: '';
 };
 
 let renderFiles = (files = [], dirTarget) => {

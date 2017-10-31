@@ -12,6 +12,26 @@ const {
 const fs = require('fs');
 const readFile = promisify(fs.readFile);
 
+/**
+ * collect information from cli example
+ */
+
+module.exports = (samples, options) => {
+    return runSamples(samples, options).then((sampleInfos) => {
+        return Promise.all(sampleInfos.samples.map((item) => {
+            return Promise.all([
+                collectBeforeRun(item),
+                collectAfterRun(item)
+            ]).then(() => {
+                return item;
+            });
+        })).then((samples) => {
+            sampleInfos.samples = samples;
+            return sampleInfos;
+        });
+    });
+};
+
 let runSamples = ({
     samples,
     name,
@@ -53,26 +73,6 @@ let runSamples = ({
             name,
             options
         };
-    });
-};
-
-/**
- * collect information from cli example
- */
-
-module.exports = (samples, options) => {
-    return runSamples(samples, options).then((sampleInfos) => {
-        return Promise.all(sampleInfos.samples.map((item) => {
-            return Promise.all([
-                collectBeforeRun(item),
-                collectAfterRun(item)
-            ]).then(() => {
-                return item;
-            });
-        })).then((samples) => {
-            sampleInfos.samples = samples;
-            return sampleInfos;
-        });
     });
 };
 
