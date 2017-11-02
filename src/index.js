@@ -16,6 +16,7 @@ const {
     writeFile
 } = require('./util');
 const promisify = require('es6-promisify');
+const log = require('./log');
 const mkdirp = promisify(require('mkdirp'));
 
 /**
@@ -61,6 +62,7 @@ let compile = (config) => {
 
                 subdocConfig.docResDir = subdocConfig.docResDir || path.join(config.docResDir, `subdocs/${index}`);
                 subdocConfig.target = subdocConfig.target || path.join(subdocConfig.docResDir, 'index.md');
+                subdocConfig.captureOptions = subdocConfig.captureOptions || config.captureOptions;
                 return compile(subdocConfig);
             }));
         }).then(() => {
@@ -76,7 +78,15 @@ let compile = (config) => {
 };
 
 module.exports = {
-    compile,
+    compile: (...args) => {
+        return compile(...args).then((data) => {
+            log.info('[success] finished to build documents.');
+            return data;
+        }).catch(err => {
+            log.error(err.toString());
+            throw err;
+        });
+    },
 
     runSample,
 

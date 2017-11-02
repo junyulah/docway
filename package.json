@@ -24,10 +24,12 @@
   },
   "homepage": "https://github.com/LoveKino/docway#readme",
   "devDependencies": {
-    "mocha": "^4.0.1"
+    "mocha": "^4.0.1",
+    "puppeteer": "^0.12.0"
   },
   "dependencies": {
-    "anipic": "0.0.5",
+    "anipic": "0.0.7",
+    "chalk": "^2.3.0",
     "es6-promisify": "^5.0.0",
     "markdown-toc": "^1.2.0",
     "mkdirp": "^0.5.1",

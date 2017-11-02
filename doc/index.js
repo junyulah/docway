@@ -5,6 +5,15 @@ const path = require('path');
 const sampleCollector = require('../collectors/sample');
 const simpleDocTemplate = require('../templates/simple/docTemplate.js');
 const simpleSampleDocTemplate = require('../templates/simple/sampleTemplate');
+const puppeteer = require('puppeteer');
+
+const headlessOpen = async(url) => {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto(url, {
+        waitUntil: 'networkidle'
+    });
+};
 
 module.exports = {
     template: simpleDocTemplate,
@@ -80,5 +89,9 @@ module.exports = {
                 }
             }
         }]
-    }]
+    }],
+
+    captureOptions: {
+        open: headlessOpen
+    }
 };

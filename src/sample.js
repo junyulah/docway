@@ -1,8 +1,10 @@
 'use strict';
 
-let {
+const {
     exec
 } = require('./util');
+
+const log = require('./log');
 
 /**
  * sample = {
@@ -30,6 +32,7 @@ let {
  */
 
 let runSample = (sample, customExecutor) => {
+    log.hint(`[run-sample] ${sample.directory}`);
     let executor = customExecutor || exec;
     let {
         prepareCmd,
@@ -54,7 +57,7 @@ let runSample = (sample, customExecutor) => {
         (postCmd ? [postCmd] : []);
 
     return executeCommands(prepareCmds, cmdOptions, executor).then(() => {
-        return executor(runCmd, cmdOptions).then((ret) => {
+        return executeCmd(runCmd, cmdOptions, executor).then((ret) => {
             if (!postCmd) return ret;
             return executeCommands(postCmds, cmdOptions, executor).then(() => {
                 return ret;
@@ -67,9 +70,14 @@ let runSample = (sample, customExecutor) => {
 
 let executeCommands = (commands, options, executor) => {
     if (!commands.length) return Promise.resolve();
-    return executor(commands[0], options).then(() => {
+    return executeCmd(commands[0], options, executor).then(() => {
         return executeCommands(commands.slice(1), options, executor);
     });
+};
+
+const executeCmd = (command, options, executor) => {
+    log.hint(command);
+    return executor(command, options);
 };
 
 const noop = () => {};

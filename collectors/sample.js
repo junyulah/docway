@@ -47,7 +47,7 @@ let runSamples = ({
     return mkdirp(imgDir).then(() => {
         return Promise.all(
             samples.map((sample, index) => {
-                let commandCapture = new CommandCapture();
+                let commandCapture = new CommandCapture(config.captureOptions);
 
                 let customExecutor = sampleOptions.capture ? (command, options) => {
                     return commandCapture.exec(command, options);

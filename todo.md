@@ -23,3 +23,13 @@
 - support prepare command and post command as list  (done!)
 
 - run anipic silently
+
+- github download plugin
+
+- release cmd for sample
+
+When build doc, execute release cmd.
+
+- download regulation
+
+- simple tools to create sample, zip sample
