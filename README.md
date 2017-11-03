@@ -92,6 +92,7 @@ module.exports = {
 
 ```
 $ ./node_modules/.bin/docway --config ./doc.js 
+[success] finished to build documents.
 
 
 ```
@@ -131,6 +132,7 @@ compile({
 
 ```
 $ node quickStart.js 
+[success] finished to build documents.
 ## test
 
 ```

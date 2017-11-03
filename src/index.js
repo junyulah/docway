@@ -80,7 +80,7 @@ let compile = (config) => {
 module.exports = {
     compile: (...args) => {
         return compile(...args).then((data) => {
-            log.info('[success] finished to build documents.');
+            log.success('[success] finished to build documents.');
             return data;
         }).catch(err => {
             log.error(err.toString());

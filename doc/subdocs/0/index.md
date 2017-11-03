@@ -66,6 +66,7 @@ module.exports = {
 
 ```
 $ ./node_modules/.bin/docway --config ./doc.js 
+[success] finished to build documents.
 
 
 ```

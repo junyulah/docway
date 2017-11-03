@@ -33,3 +33,5 @@ When build doc, execute release cmd.
 - download regulation
 
 - simple tools to create sample, zip sample
+
+- hidden commands for sample

@@ -13,6 +13,12 @@ const headlessOpen = async(url) => {
     await page.goto(url, {
         waitUntil: 'networkidle'
     });
+
+    return {
+        kill: () => {
+            browser.close();
+        }
+    };
 };
 
 module.exports = {

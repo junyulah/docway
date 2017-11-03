@@ -1,13 +1,18 @@
 const chalk = require('chalk');
 
+const log = console.log; // eslint-disable-line
+
 module.exports = {
     hint: (str) => {
-        console.log(chalk.keyword('orange')(str));
+        log(chalk.keyword('orange')(str));
     },
     info: (str) => {
-        console.log(str);
+        log(str);
+    },
+    success: (str) => {
+        log(chalk.green(str));
     },
     error: (str) => {
-        console.error(chalk.red(str));
+        log(chalk.red(str));
     }
 };

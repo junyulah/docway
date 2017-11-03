@@ -32,6 +32,7 @@ compile({
 
 ```
 $ node quickStart.js 
+[success] finished to build documents.
 ## test
 
 ```
