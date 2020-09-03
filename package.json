@@ -25,7 +25,7 @@
   "homepage": "https://github.com/LoveKino/docway#readme",
   "devDependencies": {
     "mocha": "^4.0.1",
-    "puppeteer": "^0.12.0"
+    "puppeteer": "^5.2.1"
   },
   "dependencies": {
     "anipic": "0.0.8",
